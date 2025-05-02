@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth text-white antialiased">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title id="site-title"></title>
+  <meta name="description" id="site-description" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" id="og-title" />
+  <meta property="og:description" id="og-description" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script type="module">
+    // Website Configuration
+    const config = {
+      // Brand Information
+      brand: {
+        name: 'influens.ai',
+        description: 'Web3 Ad & Reward Protocol',
+        shortDescription: '1% fee, cross-chain settlement, real-time dashboard.',
+        email: 'influens.aitech@gmail.com',
+        copyright: '2025 influens.ai. All rights reserved.'
+      },
+
+      // Social Links
+      social: {
+        twitter: 'https://x.com/influens_ai',
+        github: 'https://github.com/influensai/website',
+        docs: 'https://github.com/influensai/website'
+      },
+
+      // Color Palette
+      colors: {
+        background: '#000',
+        text: '#fff',
+        brand: '#F7DD55',
+        dark: '#111111',
+        darker: '#0A0A0A'
+      },
+
+      // Navigation Items
+      navItems: [
+        { text: 'Flow', href: '#flow' },
+        { text: 'Advantages', href: '#advantages' },
+        { text: 'Roadmap', href: '#roadmap' },
+        { text: 'Docs', href: 'https://github.com/influensai/website', external: true }
+      ],
+
+      // Business Flow Steps
+      flowSteps: [
+        {
+          icon: 'wallet',
+          title: 'Connect Wallet',
+          description: 'Support MetaMask or WalletConnect, one-click login.'
+        },
+        {
+          icon: 'target',
+          title: 'Create Ad Task',
+          description: 'Set budget, goals, and duration, smart audience matching.'
+        },
+        {
+          icon: 'zap',
+          title: 'Instant Rewards',
+          description: 'Like, share, mint NFT... Verified on-chain, instant rewards.'
+        },
+        {
+          icon: 'chart',
+          title: 'Real-time Settlement',
+          description: 'Fully transparent funds and data, withdraw anytime.'
+        }
+      ],
+
+      // Advantages
+      advantages: [
+        { title: '1% Fee', icon: 'percent' },
+        { title: 'Fully On-chain', icon: 'eye' },
+        { title: 'Cross-chain', icon: 'repeat' },
+        { title: 'Real-time Dashboard', icon: 'activity' },
+        { title: 'Built-in Airdrop', icon: 'gift' },
+        { title: 'DAO Governance', icon: 'users' }
+      ],
+
+      // Roadmap
+      roadmap: [
+        {
+          quarter: 'Q2 2025',
+          items: ['Mainnet Launch', 'Open Ad Tasks']
+        },
+        {
+          quarter: 'Q3 2025',
+          items: ['TGE Governance Token', 'Cross-chain Integration (Base / Polygon)']
+        },
+        {
+          quarter: 'Q4 2025',
+          items: ['Revenue Sharing Pool', 'Mobile SDK']
+        },
+        {
+          quarter: '2026+',
+          items: ['Advertiser Dashboard', 'Full-chain DAO Governance']
+        }
+      ]
+    };
+    
+    // Set meta tags
+    document.getElementById('site-title').textContent = `${config.brand.name} — ${config.brand.description}`;
+    document.getElementById('site-description').content = config.brand.description;
+    document.getElementById('og-title').content = `${config.brand.name} — ${config.brand.description}`;
+    document.getElementById('og-description').content = config.brand.shortDescription;
+
+    // Set CSS variables
+    document.documentElement.style.setProperty('--c-bg', config.colors.background);
+    document.documentElement.style.setProperty('--c-text', config.colors.text);
+    document.documentElement.style.setProperty('--c-brand', config.colors.brand);
+    document.documentElement.style.setProperty('--c-dark', config.colors.dark);
+    document.documentElement.style.setProperty('--c-darker', config.colors.darker);
+
+    // Store config in window for other scripts
+    window.siteConfig = config;
+  </script>
+
+  <style>
+    /* ====== brand palette ====== */
+    :root{
+      --c-bg: var(--c-bg);            /* site background */
+      --c-text: var(--c-text);
+      --c-brand: var(--c-brand);      /* main yellow */
+      --c-dark: var(--c-dark);        /* dark background */
+      --c-darker: var(--c-darker);    /* darker background */
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    @keyframes glow {
+      0% { opacity: 0.5; }
+      50% { opacity: 1; }
+      100% { opacity: 0.5; }
+    }
+
+    /* ====== basic background (with noise texture) ====== */
+    body{
+      background:
+        radial-gradient(circle at 30% 15%, rgba(247, 221, 85, 0.05) 0%, transparent 35%),
+        radial-gradient(circle at 80% 85%, rgba(247, 221, 85, 0.03) 0%, transparent 25%),
+        linear-gradient(120deg, 
+          var(--c-darker) 0%,
+          var(--c-dark) 50%,
+          var(--c-darker) 100%
+        ),
+        repeating-conic-gradient(
+          var(--c-darker) 0% 0.11%,
+          var(--c-dark) 0.11% 0.22%
+        ),
+        repeating-linear-gradient(
+          45deg,
+          rgba(255,255,255,0.01) 0px,
+          rgba(255,255,255,0.01) 1px,
+          transparent 1px,
+          transparent 3px
+        ),
+        var(--c-bg);
+      background-attachment: fixed;
+      color: var(--c-text);
+      letter-spacing: -0.02em;
+    }
+    section:not(.hero){padding-block:6rem;}
+    .glass{
+      backdrop-filter: blur(12px);
+      background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass:hover {
+      background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border-color: rgba(247, 221, 85, 0.15);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    /* brand utilities */
+    .brand-border{border-color:var(--c-brand)/20;}
+    .brand-color{
+      background: linear-gradient(to right, var(--c-brand), #FFE978);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+    .brand-bg{
+      background: linear-gradient(to right, var(--c-brand), #FFE978);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(247, 221, 85, 0.2);
+    }
+    .brand-bg:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(247, 221, 85, 0.3);
+    }
+
+    h1, h2, h3 {
+      letter-spacing: -0.03em;
+      font-weight: 800;
+    }
+    .hero h1 {
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      color: #fff;
+    }
+    .hero p {
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    .animate-glow {
+      animation: glow 4s ease-in-out infinite;
+    }
+
+    .section-padding {
+      padding-block: clamp(4rem, 10vw, 8rem);
+    }
+    
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background: var(--c-brand);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body class="leading-relaxed selection:bg-[#F7DD55]/40">
+
+  <!-- ============ Header ============ -->
+  <header class="fixed inset-x-0 top-0 z-40 bg-black/90 backdrop-blur-md border-b border-white/5">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+      <a href="#top" class="flex items-center gap-2 text-xl font-bold tracking-tight">
+        <img src="logo.png" alt="logo" class="h-8 w-8 object-contain"/>
+        <span id="brand-name"></span>
+      </a>
+      <nav class="hidden gap-10 md:flex" id="main-nav">
+        <!-- Navigation items will be inserted here -->
+      </nav>
+      <div class="flex items-center gap-3 ml-4">
+        <a href="#" id="github-link" class="p-2 rounded hover:bg-white/5 transition group">
+          <i data-lucide="github" class="h-5 w-5 text-white group-hover:text-[var(--c-brand)] transition"></i>
+        </a>
+        <a href="#" id="twitter-link" class="p-2 rounded hover:bg-white/5 transition group">
+          <i data-lucide="twitter" class="h-5 w-5 text-white group-hover:text-[var(--c-brand)] transition"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ Hero ============ -->
+  <section id="top" class="hero flex min-h-screen items-center justify-center text-center section-padding">
+    <div class="px-6 pt-24 animate-float">
+      <span class="inline-block mb-4 px-4 py-1.5 text-sm font-medium rounded-full glass animate-glow">
+        Web3 Ad Protocol
+      </span>
+      <h1 class="mb-8 text-4xl font-extrabold sm:text-5xl md:text-6xl md:leading-tight">
+        Bring Ad Budgets On-Chain,<br class="hidden sm:inline">Win-Win for&nbsp;<span class="brand-color">Brands</span>&nbsp;and&nbsp;<span class="brand-color">Users</span>
+      </h1>
+      <p class="mx-auto mb-12 max-w-2xl text-white/80 sm:text-lg md:text-xl">
+        influens.ai offers transparent settlement, low fees, and 30-second ad task creation with instant rewards.
+      </p>
+      <div class="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
+        <a href="#flow" class="rounded-lg brand-bg px-8 py-4 font-semibold text-black">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Business Flow ============ -->
+  <section id="flow" class="section-padding">
+    <div class="text-center mb-20">
+      <span class="inline-block mb-4 px-4 py-1.5 text-sm font-medium rounded-full glass">
+        Simple 4 Steps
+      </span>
+      <h2 class="text-4xl font-bold md:text-5xl">Business Flow</h2>
+    </div>
+    <div class="mx-auto grid max-w-6xl gap-8 px-6 md:grid-cols-4">
+      <div class="glass rounded-xl p-8 hover:shadow-lg hover:shadow-[var(--c-brand)]/5 transition-all group">
+        <i data-lucide="wallet" class="mb-6 h-10 w-10 brand-color transition-transform group-hover:scale-110"></i>
+        <h3 class="mb-3 text-xl font-bold">Connect Wallet</h3>
+        <p class="text-white/70">Support MetaMask or WalletConnect, one-click login.</p>
+      </div>
+      <div class="glass rounded-xl p-8 hover:shadow-lg hover:shadow-[var(--c-brand)]/5 transition-all group">
+        <i data-lucide="target" class="mb-6 h-10 w-10 brand-color transition-transform group-hover:scale-110"></i>
+        <h3 class="mb-3 text-xl font-bold">Create Ad Task</h3>
+        <p class="text-white/70">Set budget, goals, and duration, smart audience matching.</p>
+      </div>
+      <div class="glass rounded-xl p-8 hover:shadow-lg hover:shadow-[var(--c-brand)]/5 transition-all group">
+        <i data-lucide="zap" class="mb-6 h-10 w-10 brand-color transition-transform group-hover:scale-110"></i>
+        <h3 class="mb-3 text-xl font-bold">Instant Rewards</h3>
+        <p class="text-white/70">Like, share, mint NFT... Verified on-chain, instant rewards.</p>
+      </div>
+      <div class="glass rounded-xl p-8 hover:shadow-lg hover:shadow-[var(--c-brand)]/5 transition-all group">
+        <i data-lucide="chart" class="mb-6 h-10 w-10 brand-color transition-transform group-hover:scale-110"></i>
+        <h3 class="mb-3 text-xl font-bold">Real-time Settlement</h3>
+        <p class="text-white/70">Fully transparent funds and data, withdraw anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Advantages ============ -->
+  <section id="advantages">
+    <h2 class="mb-16 text-center text-4xl font-bold">Our Advantages</h2>
+    <div class="mx-auto grid max-w-6xl gap-10 px-4 sm:grid-cols-2 lg:grid-cols-3">
+      <Adv title="1% Fee" icon="percent"/>
+      <Adv title="Fully On-chain" icon="eye"/>
+      <Adv title="Cross-chain" icon="repeat"/>
+      <Adv title="Real-time Dashboard" icon="activity"/>
+      <Adv title="Built-in Airdrop" icon="gift"/>
+      <Adv title="DAO Governance" icon="users"/>
+    </div>
+  </section>
+
+  <!-- ============ Roadmap ============ -->
+  <section id="roadmap">
+    <h2 class="mb-16 text-center text-4xl font-bold">Roadmap</h2>
+    <ol class="relative mx-auto max-w-5xl border-l border-[var(--c-brand)]/50 pl-6">
+      <Road q="Q2&nbsp;2025" items="Mainnet Launch,Open Ad Tasks"/>
+      <Road q="Q3&nbsp;2025" items="TGE Governance Token,Cross-chain Integration (Base / Polygon)"/>
+      <Road q="Q4&nbsp;2025" items="Revenue Sharing Pool,Mobile SDK"/>
+      <Road q="2026+"   items="Advertiser Dashboard,Full-chain DAO Governance"/>
+    </ol>
+  </section>
+
+  <!-- ============ CTA Footer ============ -->
+  <footer class="border-t border-white/5 bg-black/95 backdrop-blur-sm py-16 text-center">
+    <div class="max-w-2xl mx-auto px-6">
+      <h3 class="text-2xl font-bold mb-8">Ready to Join?</h3>
+      <a href="mailto:influens.aitech@gmail.com" class="rounded-lg brand-bg px-8 py-4 font-semibold text-black inline-block">Contact Us</a>
+
+      <div class="mt-12 flex justify-center gap-8 text-white/40" id="footer-social">
+        <!-- Social links will be inserted here -->
+      </div>
+
+      <p class="mt-12 text-sm text-white/40" id="copyright"></p>
+    </div>
+  </footer>
+
+  <!-- ============ small scripts ============ -->
+  <script type="module">
+    // Initialize navigation
+    const navContainer = document.getElementById('main-nav');
+    window.siteConfig.navItems.forEach(item => {
+      const a = document.createElement('a');
+      a.href = item.href;
+      a.textContent = item.text;
+      a.className = 'nav-link hover:text-[var(--c-brand)]';
+      if (item.external) {
+        a.target = '_blank';
+      }
+      navContainer.appendChild(a);
+    });
+
+    // Set social links
+    document.getElementById('github-link').href = window.siteConfig.social.github;
+    document.getElementById('twitter-link').href = window.siteConfig.social.twitter;
+    document.getElementById('brand-name').textContent = window.siteConfig.brand.name;
+
+    // Set footer social links
+    const footerSocial = document.getElementById('footer-social');
+    if (window.siteConfig.social.twitter) {
+      const twitterLink = document.createElement('a');
+      twitterLink.href = window.siteConfig.social.twitter;
+      twitterLink.target = '_blank';
+      twitterLink.className = 'hover:text-white transition-colors';
+      twitterLink.innerHTML = '<i data-lucide="twitter" class="h-6 w-6"></i>';
+      footerSocial.appendChild(twitterLink);
+    }
+    if (window.siteConfig.social.github) {
+      const githubLink = document.createElement('a');
+      githubLink.href = window.siteConfig.social.github;
+      githubLink.target = '_blank';
+      githubLink.className = 'hover:text-white transition-colors';
+      githubLink.innerHTML = '<i data-lucide="github" class="h-6 w-6"></i>';
+      footerSocial.appendChild(githubLink);
+    }
+
+    // Set copyright text
+    document.getElementById('copyright').textContent = window.siteConfig.brand.copyright;
+
+    // Initialize Lucide icons
+    lucide.createIcons();
+  </script>
+</body>
+</html>
