@@ -11,9 +11,14 @@
 
 ## Project structure
 
+```
 influens.ai/
-├── index.html   # Landing page markup
-└── logo.png     # Project logo (used above)
+├── index.html     # Landing page markup
+├── doc.html       # Documentation page
+├── logo.png       # Project logo
+├── favicon.svg    # Website favicon
+├── README.md      # Project documentation
+```
 
 ---
 
@@ -28,18 +33,24 @@ cd influens.ai
 open index.html        # macOS
 start index.html       # Windows
 xdg-open index.html    # Linux
+```
 
 Or launch with any static server (e.g. npx serve) or the VS Code Live Server extension for hot-reload preview.
 
 ⸻
 
-Roadmap
+## Roadmap
 
-Phase	Feature	Details	ETA
-✅ v0.1	Landing page live	Basic flow explanation & CTA	Current
-🔜 v0.2	Advertiser dashboard	• Real-time spend / eCPM stats• Pause / top-up budget	Q2 2025
+| Phase   | Feature                | Details                                         | Status      | ETA      |
+|---------|------------------------|-------------------------------------------------|-------------|----------|
+| v0.1    | Landing page live      | Basic flow explanation & CTA                    | ✅ Done     | Current  |
+| v0.2    | Advertiser dashboard   | • Real-time spend / eCPM stats<br>• Pause/top-up budget | 🔜 In progress | 2025 Q2  |
 
-Ideas or feedback? Open an issue and let’s discuss.
+⸻
+
+## Contributing
+
+Ideas or feedback? Please open an issue to discuss or contribute.
 
 ⸻
 
