@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth text-white antialiased">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Docs | influens.ai</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body {
+      background: linear-gradient(120deg, #0A0A0A 0%, #111111 50%, #0A0A0A 100%);
+      color: #fff;
+    }
+    .sidebar {
+      min-width: 220px;
+      max-width: 260px;
+      background: #111111;
+      border-right: 1px solid #222;
+      transition: width 0.3s;
+    }
+    .sidebar.collapsed {
+      min-width: 56px;
+      max-width: 56px;
+      overflow: hidden;
+    }
+    .sidebar-toggle {
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      color: #F7DD55;
+      font-size: 1.2rem;
+      background: none;
+      border: none;
+      outline: none;
+      width: 100%;
+      text-align: left;
+    }
+    .sidebar .menu-item {
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      color: #fff;
+      border-left: 3px solid transparent;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .sidebar .menu-item.active {
+      background: #222;
+      border-left: 3px solid #F7DD55;
+      color: #F7DD55;
+    }
+    .sidebar .menu-item:hover {
+      background: #191919;
+    }
+    .sidebar .submenu {
+      margin-left: 1.5rem;
+      border-left: 1px solid #222;
+    }
+    .sidebar .submenu .menu-item {
+      padding: 0.5rem 1.5rem;
+      font-size: 0.98em;
+    }
+    @media (max-width: 768px) {
+      .sidebar { position: absolute; z-index: 20; height: 100vh; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex">
+  <!-- Sidebar -->
+  <aside id="sidebar" class="sidebar flex flex-col">
+    <a href="index.html" class="sidebar-toggle" style="text-align:center;background:#222;margin-bottom:0.5rem;">← back</a>
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰ Docs</button>
+    <div id="menu" class="flex-1">
+      <div class="menu-item active" data-section="about" onclick="showSection('about')">About</div>
+      <div class="menu-item" data-section="how" onclick="showSection('how')">How to Participate</div>
+      <div class="submenu">
+        <div class="menu-item" data-section="team" onclick="showSection('team')">I am a Project Team</div>
+        <div class="menu-item" data-section="creator" onclick="showSection('creator')">I am a Creator / KOL / Social Media User</div>
+      </div>
+      <div class="menu-item" data-section="cases" onclick="showSection('cases')">Example Use Cases</div>
+      <div class="menu-item" data-section="tech" onclick="showSection('tech')">Technical Highlight</div>
+    </div>
+  </aside>
+  <!-- Content -->
+  <main class="flex-1 p-8 md:p-16 overflow-y-auto">
+    <div id="doc-content" class="prose prose-invert max-w-none"></div>
+  </main>
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('collapsed');
+    }
+    function showSection(section) {
+      document.querySelectorAll('.menu-item').forEach(item => {
+        item.classList.remove('active');
+        if (item.dataset.section === section) item.classList.add('active');
+      });
+      document.getElementById('doc-content').innerHTML = marked.parse(sections[section]);
+    }
+    // 分块内容
+    const sections = {
+      about: `# About influens.ai\n\ninfluens.ai is an AI-powered social interaction protocol designed to facilitate authentic, efficient, and monetizable engagement between content creators, project teams, and community users. By leveraging AI-generated content and automated operations alongside on-chain payment mechanisms, the platform ensures that every interaction generates real value and economic return.\n\ninfluens.ai is building a next-generation \"Intelligent Sponsored Engagement Platform\" with three core functional modules: AI-based user identification and matching, dynamic interaction sponsorship pricing, and on-chain revenue distribution.`,
+      how: `## How to Participate`,
+      team: `### I am a Project Team\nYou can create interaction tasks on the platform by setting your target audience profile, preferred interaction methods, and budget limits. The system automatically matches you with highly relevant, high-impact users and dynamically calculates sponsorship payouts based on actual performance.\n- No ad agencies needed — directly connect with real users\n- Automatically publish tasks and track execution status\n- Rewards are automatically distributed to users via on-chain smart contracts after interaction completion`,
+      creator: `### I am a Creator / KOL / Social Media User\nConnect your Twitter account to the platform to access highly relevant sponsored engagement tasks and earn rewards.\n- All tasks are priced based on your influence and relevance\n- Rewards can be settled in real-time and withdrawn on-chain\n- Monetize independently without relying on platform ads or revenue sharing`,
+      cases: `## Example Use Cases\n- Web3 Project Launch: Precisely match with real users to quickly build a seed user base and generate word-of-mouth marketing\n- Creator Monetization Tool: Collaborate on sponsored tasks to earn income without relying on platform ad revenue\n- Brand Social Marketing: Cost-effectively drive authentic community interaction and content sharing, improving marketing ROI\n- Automated Twitter Community Growth: Enhance engagement and follower quality through AI-generated content and account automation`,
+      tech: `## Technical Highlight: Token Settlement via BSC\nThe platform leverages the Binance Smart Chain (BSC) to ensure all engagement rewards are settled and managed on-chain. All fund transfers and token distributions are handled automatically by smart contracts, ensuring fairness, transparency, and trustlessness.\n- Smart Contract Payments: Sponsorship funds are automatically transferred to qualified participants\n- BEP-20 Token Support: Compatible with mainstream BSC tokens and supports flexible withdrawals\n- Transaction Tracking: Monitor token distribution status in real-time after task completion\n- Gas Fee Optimization: Contract design minimizes transaction costs and enhances execution efficiency`
+    };
+    // 默认显示About
+    document.getElementById('doc-content').innerHTML = marked.parse(sections['about']);
+  </script>
+</body>
+</html> 
